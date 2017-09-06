@@ -1,0 +1,20 @@
+﻿@model List<PeopleSearch.Models.PersonModel>
+
+@section scripts{
+	<script src="@Url.Content("~/PeopleSearchScripts/peopleSearchModule.js")"></script>
+}
+
+<h4>
+	Typing in the search box uses AngularJS to quickly filter the people by their name.
+	Clicking the "Slow Search" button will make a call to the server to query the database while also simulating the server being slow.
+</h4>
+
+<div ng-app="peopleSearch" class="row">
+	<div ng-controller="personController">
+		<input type="search" style="margin: 10px;" placeholder="Search Names" ng-model="searchInput" ng-change="onSearchTextChanged(searchInput)" />
+		<input type="button" ng-click="search(searchInput)" value="Slow Search" class="btn" />
+		@*<input type="button" value="Create" class="btn" />*@
+
+		@Html.Partial("_PeopleGrid", Model)
+	</div>
+</div>

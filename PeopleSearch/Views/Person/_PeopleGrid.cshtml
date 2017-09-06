@@ -1,0 +1,28 @@
+﻿@model List<PeopleSearch.Models.PersonModel>
+
+<table ng-show="filteredPeople.length" class="table table-condensed table-striped table-responsive table-hover hideOnSearch">
+	<thead>
+		<tr>
+			<td>Picture</td>
+			<td>Name</td>
+			<td>Address</td>
+			<td>Age</td>
+			<td>Interests</td>
+		</tr>
+	</thead>
+	<tr ng-repeat="person in filteredPeople = (people | filter: { Name: searchInput })">
+		<td><img ng-if="person.Picture != null" ng-src="~/Content/Images/{{ person.Picture }}" style="height: 50px; width: 50px;" class="img-circle" /></td>
+		<td style="vertical-align: middle;">{{ person.Name }}</td>
+		<td style="vertical-align: middle;">{{ person.Address }}</td>
+		<td style="vertical-align: middle;">{{ person.Age }}</td>
+		<td style="vertical-align: middle;">{{ person.Interests }}</td>
+	</tr>
+</table>
+
+<div ng-hide="filteredPeople.length" class="hideOnSearch">
+	<h3>No results found.</h3>
+</div>
+
+<div style="margin: auto; display: block; width: 10%;">
+	<img id="loadingSpinner" src="~/Content/Images/spinner.gif" style="height: 40px; width: 40px; display: none; margin-top: 20px;" />
+</div>
